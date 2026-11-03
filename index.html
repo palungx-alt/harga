@@ -4,36 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Harga - RAJ Group</title>
-    <!-- Font Inter & Space Grotesk -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Plus Jakarta Sans (Modern & Enak Dibaca) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Library html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         :root {
-            /* Palet Warna Hijau Logo RAJ (Lebih Hidup & Futuristik) */
-            --bg-body: #f0fdf4;       /* Latar sangat muda kehijauan */
+            /* Palet Warna Hijau Logo RAJ */
+            --bg-body: #f0fdf4;
             --card-bg: #ffffff;
             --raj-dark: #14532d;      /* Hijau Tua Gelap */
-            --raj-primary: #16a34a;   /* Hijau Daun Cerah (Logo) */
-            --raj-glow: rgba(22, 163, 74, 0.15);
+            --raj-primary: #16a34a;   /* Hijau Daun Cerah */
+            --raj-light: #dcfce7;     /* Hijau Muda Background */
             --text-main: #1e293b;
             --text-muted: #64748b;
             --border-color: #dcfce7;
             --wa-green: #25D366;
+            --shadow-card: 0 4px 20px -5px rgba(22, 163, 74, 0.1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         
         body { 
             background-color: var(--bg-body);
-            /* Efek gradient futuristik halus di latar */
             background-image: radial-gradient(circle at 50% 0%, #dcfce7 0%, transparent 70%);
             color: var(--text-main); 
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
         }
 
         .main-wrapper {
@@ -42,81 +42,75 @@
             position: relative;
         }
 
-        /* --- HEADER FUTURISTIK HIJAU --- */
+        /* --- HEADER --- */
         .header-clean {
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1.5rem;
-            box-shadow: 0 10px 40px -10px var(--raj-glow);
+            gap: 1rem;
+            box-shadow: var(--shadow-card);
             border: 1px solid var(--border-color);
             flex-wrap: wrap;
             position: relative;
             overflow: hidden;
         }
 
-        /* Aksen garis hijau neon di header */
         .header-clean::before {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--raj-dark), var(--raj-primary), var(--raj-dark));
         }
 
-        .brand-left { display: flex; align-items: center; gap: 1.2rem; }
+        .brand-left { display: flex; align-items: center; gap: 1rem; }
 
         .logo-img {
-            width: 70px; height: 70px;
+            width: 60px; height: 60px;
             border-radius: 16px;
             object-fit: contain;
             background: white;
             border: 2px solid var(--raj-primary);
-            padding: 6px;
-            box-shadow: 0 4px 12px var(--raj-glow);
+            padding: 4px;
         }
 
         .brand-text h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--raj-dark);
             line-height: 1.2;
             letter-spacing: -0.5px;
         }
 
         .brand-text p {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--raj-primary);
-            margin-top: 4px;
-            font-weight: 600;
+            margin-top: 2px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .slogan-box {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-style: italic;
             color: var(--raj-dark);
             text-align: right;
-            line-height: 1.4;
+            line-height: 1.3;
             border-right: 3px solid var(--raj-primary);
-            padding-right: 1rem;
-            font-weight: 500;
+            padding-right: 0.8rem;
+            font-weight: 600;
         }
 
         /* --- SEARCH BAR --- */
-        .search-container {
-            position: relative;
-            margin-bottom: 2rem;
-        }
+        .search-container { position: relative; margin-bottom: 1.5rem; }
 
         .search-input {
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            padding-left: 3.5rem;
+            padding: 1rem 1.2rem;
+            padding-left: 3rem;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
@@ -124,31 +118,31 @@
             font-size: 1rem;
             outline: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            font-weight: 500;
         }
 
         .search-input:focus {
             border-color: var(--raj-primary);
-            box-shadow: 0 0 0 4px var(--raj-glow);
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
         }
 
         .search-icon {
-            position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%);
+            position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
             color: var(--raj-primary); width: 20px; height: 20px;
         }
 
-        /* --- TABLE CLEAN STYLE --- */
+        /* --- DESKTOP TABLE VIEW --- */
         .table-card {
             background: var(--card-bg);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 40px -10px var(--raj-glow);
+            box-shadow: var(--shadow-card);
             border: 1px solid var(--border-color);
+            display: block; /* Default Desktop */
         }
 
-        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        table { width: 100%; border-collapse: collapse; }
 
         th {
             background: #f0fdf4;
@@ -156,12 +150,10 @@
             padding: 1.2rem 1rem;
             text-align: left;
             font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
             border-bottom: 2px solid var(--raj-primary);
-            white-space: nowrap;
         }
 
         td {
@@ -169,70 +161,131 @@
             border-bottom: 1px solid var(--border-color);
             color: var(--text-main);
             font-size: 0.95rem;
+            vertical-align: middle;
         }
 
         tr:last-child td { border-bottom: none; }
         tr:hover td { background: #f0fdf4; transition: 0.2s; }
 
-        .col-no { color: var(--text-muted); width: 50px; text-align: center; font-weight: 600; }
-        .col-price { font-weight: 700; color: var(--raj-dark); text-align: right; white-space: nowrap; }
+        .col-no { color: var(--text-muted); width: 50px; text-align: center; font-weight: 700; }
+        .col-price { font-weight: 800; color: var(--raj-dark); text-align: right; white-space: nowrap; font-size: 1.05rem; }
         .col-unit { 
-            color: var(--raj-primary); font-size: 0.8rem; text-align: center; 
+            color: var(--raj-primary); font-size: 0.75rem; text-align: center; 
             background: #dcfce7; border-radius: 6px; display: inline-block; 
-            padding: 2px 8px; font-weight: 600;
+            padding: 3px 10px; font-weight: 700;
         }
         .col-ket { text-align: center; font-size: 1.2rem; }
+
+        /* --- MOBILE CARD VIEW (RESPONSIVE) --- */
+        .mobile-grid {
+            display: none; /* Hidden on Desktop */
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .price-card:active { transform: scale(0.98); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-no {
+            background: var(--raj-light);
+            color: var(--raj-dark);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .card-unit {
+            font-size: 0.7rem;
+            color: var(--raj-primary);
+            background: #f0fdf4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .card-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 0.8rem;
+        }
+
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--raj-dark);
+        }
 
         /* --- FOOTER TAGS --- */
         .footer-tags {
             margin-top: 2rem;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .tag {
-            display: flex; align-items: center; gap: 0.5rem;
-            background: white; padding: 0.6rem 1.2rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            background: white; padding: 0.5rem 1rem;
             border-radius: 50px; border: 1px solid var(--border-color);
-            font-size: 0.8rem; font-weight: 600; color: var(--raj-dark);
+            font-size: 0.75rem; font-weight: 700; color: var(--raj-dark);
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        /* --- CONTROLS & FLOATING BUTTONS --- */
+        /* --- CONTROLS --- */
         .controls {
-            position: fixed; bottom: 2rem; right: 2rem;
-            display: flex; flex-direction: column; gap: 1rem;
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            display: flex; flex-direction: column; gap: 0.8rem;
             z-index: 100; align-items: flex-end;
         }
 
         .btn {
-            border: none; padding: 1rem 1.5rem; border-radius: 12px;
-            font-weight: 600; cursor: pointer; display: flex;
+            border: none; padding: 0.9rem 1.4rem; border-radius: 14px;
+            font-weight: 700; cursor: pointer; display: flex;
             align-items: center; gap: 0.5rem; transition: all 0.3s;
-            font-family: 'Space Grotesk', sans-serif; text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem; text-decoration: none;
         }
 
         .btn-primary { 
             background: var(--raj-dark); color: white; 
             box-shadow: 0 4px 15px rgba(20, 83, 45, 0.3); 
         }
-        .btn-primary:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 20px rgba(20, 83, 45, 0.4); 
-            background: var(--raj-primary);
-        }
+        .btn-primary:hover { background: var(--raj-primary); transform: translateY(-2px); }
         
         .btn-wa { 
             background: var(--wa-green); color: white; 
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
             animation: pulse-wa 2s infinite; 
-        }
-        .btn-wa:hover { 
-            transform: translateY(-3px) scale(1.05); 
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5); 
         }
 
         @keyframes pulse-wa {
@@ -243,26 +296,31 @@
 
         .loading-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 50; border-radius: 24px; color: var(--raj-dark);
         }
 
         .spinner {
-            width: 40px; height: 40px; border: 3px solid #dcfce7;
+            width: 36px; height: 36px; border: 3px solid #dcfce7;
             border-top-color: var(--raj-primary); border-radius: 50%;
             animation: spin 1s linear infinite; margin-bottom: 1rem;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Responsive Mobile */
+        /* --- MEDIA QUERY RESPONSIVE --- */
         @media (max-width: 768px) {
-            .header-clean { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .header-clean { flex-direction: column; text-align: center; padding: 1.2rem; }
             .brand-left { flex-direction: column; }
-            .slogan-box { border-right: none; border-bottom: 2px solid var(--raj-primary); padding-bottom: 1rem; padding-right: 0; text-align: center; width: 100%; }
+            .slogan-box { border-right: none; border-bottom: 2px solid var(--raj-primary); padding-bottom: 0.8rem; padding-right: 0; text-align: center; width: 100%; }
+            
+            /* Sembunyikan Tabel, Tampilkan Grid Kartu */
+            .table-card { display: none; }
+            .mobile-grid { display: grid; }
+            
             .controls { bottom: 1rem; right: 1rem; left: 1rem; flex-direction: row; justify-content: center; }
-            .btn { flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.9rem; }
-            .btn-wa { flex: 0 0 auto; padding: 0.8rem 1.2rem; }
+            .btn { flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.85rem; }
+            .btn-wa { flex: 0 0 auto; padding: 0.8rem 1rem; }
         }
     </style>
 </head>
@@ -271,7 +329,7 @@
     <div class="main-wrapper" id="capture-target">
         <div id="loading" class="loading-overlay">
             <div class="spinner"></div>
-            <p style="font-weight: 600;">Memuat Data Harga...</p>
+            <p style="font-weight: 700;">Memuat Data...</p>
         </div>
 
         <header class="header-clean">
@@ -289,25 +347,27 @@
 
         <div class="search-container">
             <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari material... (Contoh: Tembaga, Kardus)">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari material...">
         </div>
 
+        <!-- Tampilan Desktop (Tabel) -->
         <div class="table-card">
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="col-no">NO</th>
-                            <th>NAMA BARANG</th>
-                            <th>SATUAN</th>
-                            <th>HARGA (IDR)</th>
-                            <th>KET</th>
-                        </tr>
-                    </thead>
-                    <tbody id="priceTableBody"></tbody>
-                </table>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-no">NO</th>
+                        <th>NAMA BARANG</th>
+                        <th>SATUAN</th>
+                        <th>HARGA (IDR)</th>
+                        <th>KET</th>
+                    </tr>
+                </thead>
+                <tbody id="priceTableBody"></tbody>
+            </table>
         </div>
+
+        <!-- Tampilan Mobile (Grid Kartu) -->
+        <div id="mobileGrid" class="mobile-grid"></div>
 
         <div class="footer-tags">
             <div class="tag">🌿 Peduli Lingkungan</div>
@@ -317,12 +377,12 @@
     </div>
 
     <div class="controls">
-        <button onclick="downloadPNG()" class="btn btn-primary" title="Simpan sebagai PNG">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        <button onclick="downloadPNG()" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Save PNG
         </button>
-        <a href="https://wa.me/6285138759267?text=Halo%20Admin%20RAJ%20Group%2C%20saya%20ingin%20menanyakan%20daftar%20harga%20terbaru.%20Mohon%20informasinya." target="_blank" class="btn btn-wa" title="Chat Admin via WhatsApp">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <a href="https://wa.me/6285138759267?text=Halo%20Admin%20RAJ%20Group%2C%20saya%20ingin%20menanyakan%20daftar%20harga%20terbaru." target="_blank" class="btn btn-wa">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             Chat Admin
         </a>
     </div>
@@ -336,88 +396,95 @@
         async function fetchPrices() {
             const loading = document.getElementById('loading');
             const tbody = document.getElementById('priceTableBody');
+            const mobileGrid = document.getElementById('mobileGrid');
+            
             loading.style.display = 'flex';
             tbody.innerHTML = '';
+            mobileGrid.innerHTML = '';
 
             try {
                 const res = await fetch(`${API_URL}?action=getMasterData`);
                 const result = await res.json();
                 if (result.status === 'success' && result.items) {
                     allData = result.items;
-                    renderTable(allData);
+                    renderAllViews(allData);
                 } else { throw new Error('Data invalid'); }
             } catch (err) {
-                // Fallback data dummy jika offline/error saat test lokal
-                console.log("Menggunakan data dummy karena error fetch:", err);
+                // Fallback dummy data jika offline
                 allData = [
                     {name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
                     {name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
                     {name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: "⬆️"}
                 ];
-                renderTable(allData);
+                renderAllViews(allData);
             } finally { loading.style.display = 'none'; }
         }
 
-        function renderTable(items) {
+        function renderAllViews(items) {
             const tbody = document.getElementById('priceTableBody');
-            tbody.innerHTML = '';
+            const mobileGrid = document.getElementById('mobileGrid');
+            
             if(items.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">Tidak ada data ditemukan.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem;">Tidak ada data.</td></tr>`;
                 return;
             }
+
             items.forEach((item, idx) => {
                 const isUp = item.keterangan && String(item.keterangan).includes('⬆️');
                 const statusBadge = isUp ? `<span style="color:#16a34a; font-size:1.2rem;" title="Harga Naik">⬆️</span>` : `-`;
+                
+                // Render Tabel Desktop
                 tbody.innerHTML += `
                     <tr>
                         <td class="col-no">${idx + 1}</td>
-                        <td style="font-weight:500;">${item.name}</td>
+                        <td style="font-weight:600;">${item.name}</td>
                         <td style="text-align:center;"><span class="col-unit">${item.satuan || 'Kg'}</span></td>
                         <td class="col-price">${formatIDR(item.price)}</td>
                         <td class="col-ket">${statusBadge}</td>
                     </tr>`;
+
+                // Render Kartu Mobile
+                mobileGrid.innerHTML += `
+                    <div class="price-card">
+                        <div class="card-header">
+                            <span class="card-no">#${idx + 1}</span>
+                            <span class="card-unit">${item.satuan || 'Kg'}</span>
+                        </div>
+                        <div class="card-name">${item.name}</div>
+                        <div class="card-footer">
+                            <div class="card-price">${formatIDR(item.price)}</div>
+                            ${isUp ? '<div style="color:#16a34a; font-size:1.2rem;">⬆️</div>' : ''}
+                        </div>
+                    </div>`;
             });
         }
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const keyword = e.target.value.toLowerCase();
             const filtered = allData.filter(item => String(item.name).toLowerCase().includes(keyword));
-            renderTable(filtered);
+            renderAllViews(filtered);
         });
 
-        // FUNGSI DOWNLOAD PNG YANG DIPERBAIKI UNTUK FILE LOKAL
         function downloadPNG() {
             const btn = document.querySelector('.btn-primary');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '⏳ Memproses...';
+            btn.innerHTML = '⏳ Proses...';
             
             const target = document.getElementById('capture-target');
             
-            // Konfigurasi khusus untuk mengatasi masalah file:///
             html2canvas(target, { 
-                scale: 2, 
-                backgroundColor: '#f0fdf4', // Pastikan background terisi
-                useCORS: true,
-                allowTaint: true,
-                logging: false
+                scale: 2, backgroundColor: '#f0fdf4', useCORS: true, allowTaint: true 
             }).then(canvas => {
                 try {
-                    // Metode download universal
                     const link = document.createElement('a');
                     link.download = `RAJ-PriceList-${new Date().toISOString().slice(0,10)}.png`;
                     link.href = canvas.toDataURL('image/png');
-                    
-                    // Trigger click
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    
                     btn.innerHTML = originalText;
                 } catch (e) {
-                    alert("Gagal menyimpan otomatis. Silakan klik kanan pada gambar di bawah lalu 'Save Image As'.");
-                    // Fallback: tampilkan gambar di tab baru jika download diblokir browser
-                    const imgWindow = window.open("");
-                    imgWindow.document.write(canvas.toDataURL('image/png'));
+                    alert("Gagal menyimpan otomatis. Silakan screenshot manual.");
                     btn.innerHTML = originalText;
                 }
             }).catch(err => { 
