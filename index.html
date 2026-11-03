@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Harga - RAJ Group</title>
-    <!-- Font Plus Jakarta Sans (Modern & Enak Dibaca) -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Library html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         :root {
-            /* Palet Warna Hijau Logo RAJ */
             --bg-body: #f0fdf4;
             --card-bg: #ffffff;
-            --raj-dark: #14532d;      /* Hijau Tua Gelap */
-            --raj-primary: #16a34a;   /* Hijau Daun Cerah */
-            --raj-light: #dcfce7;     /* Hijau Muda Background */
+            --raj-dark: #14532d;
+            --raj-primary: #16a34a;
+            --raj-light: #dcfce7;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --border-color: #dcfce7;
@@ -104,15 +101,36 @@
             font-weight: 600;
         }
 
+        /* --- BADGE TANGGAL UPDATE --- */
+        .update-badge {
+            background: linear-gradient(135deg, var(--raj-dark), var(--raj-primary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .update-badge svg {
+            width: 14px; height: 14px;
+        }
+
         /* --- SEARCH BAR --- */
         .search-container { position: relative; margin-bottom: 1.5rem; }
 
+        .search-wrapper { position: relative; display: flex; align-items: center; }
+
         .search-input {
             width: 100%;
-            padding: 1rem 1.2rem;
-            padding-left: 3rem;
+            padding: 1rem 3rem 1rem 3rem;
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: 16px;
             color: var(--text-main);
             font-size: 1rem;
@@ -120,6 +138,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             font-weight: 500;
+            -webkit-appearance: none;
         }
 
         .search-input:focus {
@@ -130,16 +149,34 @@
         .search-icon {
             position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
             color: var(--raj-primary); width: 20px; height: 20px;
+            pointer-events: none;
         }
 
-        /* --- DESKTOP TABLE VIEW --- */
+        .clear-btn {
+            position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%);
+            background: var(--raj-light); border: none; width: 28px; height: 28px;
+            border-radius: 50%; cursor: pointer; display: none;
+            align-items: center; justify-content: center;
+            color: var(--raj-dark); font-size: 1rem; font-weight: 700;
+        }
+
+        .clear-btn.show { display: flex; }
+
+        .search-count {
+            text-align: center; font-size: 0.85rem; color: var(--text-muted);
+            margin-bottom: 1rem; font-weight: 600; display: none;
+        }
+
+        .search-count.show { display: block; }
+
+        /* --- DESKTOP TABLE --- */
         .table-card {
             background: var(--card-bg);
             border-radius: 24px;
             overflow: hidden;
             box-shadow: var(--shadow-card);
             border: 1px solid var(--border-color);
-            display: block; /* Default Desktop */
+            display: block;
         }
 
         table { width: 100%; border-collapse: collapse; }
@@ -176,9 +213,9 @@
         }
         .col-ket { text-align: center; font-size: 1.2rem; }
 
-        /* --- MOBILE CARD VIEW (RESPONSIVE) --- */
+        /* --- MOBILE GRID --- */
         .mobile-grid {
-            display: none; /* Hidden on Desktop */
+            display: none;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 1rem;
         }
@@ -192,7 +229,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
         }
 
         .price-card:active { transform: scale(0.98); }
@@ -245,7 +281,7 @@
             color: var(--raj-dark);
         }
 
-        /* --- FOOTER TAGS --- */
+        /* --- FOOTER --- */
         .footer-tags {
             margin-top: 2rem;
             display: flex;
@@ -308,13 +344,12 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* --- MEDIA QUERY RESPONSIVE --- */
         @media (max-width: 768px) {
             .header-clean { flex-direction: column; text-align: center; padding: 1.2rem; }
             .brand-left { flex-direction: column; }
             .slogan-box { border-right: none; border-bottom: 2px solid var(--raj-primary); padding-bottom: 0.8rem; padding-right: 0; text-align: center; width: 100%; }
+            .update-badge { margin: 0.8rem auto 0; }
             
-            /* Sembunyikan Tabel, Tampilkan Grid Kartu */
             .table-card { display: none; }
             .mobile-grid { display: grid; }
             
@@ -343,14 +378,24 @@
             <div class="slogan-box">
                 "Bersama Kelola Limbah<br>Untuk Masa Depan Lebih Baik"
             </div>
+            
+            <!-- Badge Tanggal Update -->
+            <div class="update-badge" id="updateBadge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span id="updateDate">Memuat tanggal...</span>
+            </div>
         </header>
 
         <div class="search-container">
-            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari material...">
+            <div class="search-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari material... (Contoh: Tembaga, Kardus)" autocomplete="off">
+                <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+            </div>
         </div>
 
-        <!-- Tampilan Desktop (Tabel) -->
+        <div id="searchCount" class="search-count"></div>
+
         <div class="table-card">
             <table>
                 <thead>
@@ -366,7 +411,6 @@
             </table>
         </div>
 
-        <!-- Tampilan Mobile (Grid Kartu) -->
         <div id="mobileGrid" class="mobile-grid"></div>
 
         <div class="footer-tags">
@@ -391,16 +435,25 @@
         const API_URL = 'https://script.google.com/macros/s/AKfycbylgW2dzHDG51D9qHtDJ0K5cwmidBgwK9Y7a1lPEoYRskK0kXRrEUYSbjjAFeOyi-Dz/exec';
         let allData = [];
 
+        // Format Rupiah
         const formatIDR = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
+
+        // Set Tanggal Update Otomatis (Bahasa Indonesia)
+        function setUpdateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const formattedDate = now.toLocaleDateString('id-ID', options);
+            document.getElementById('updateDate').textContent = `Update: ${formattedDate}`;
+        }
 
         async function fetchPrices() {
             const loading = document.getElementById('loading');
-            const tbody = document.getElementById('priceTableBody');
-            const mobileGrid = document.getElementById('mobileGrid');
-            
             loading.style.display = 'flex';
-            tbody.innerHTML = '';
-            mobileGrid.innerHTML = '';
 
             try {
                 const res = await fetch(`${API_URL}?action=getMasterData`);
@@ -410,11 +463,14 @@
                     renderAllViews(allData);
                 } else { throw new Error('Data invalid'); }
             } catch (err) {
-                // Fallback dummy data jika offline
+                console.log("Menggunakan data dummy:", err);
                 allData = [
-                    {name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
-                    {name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
-                    {name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: "⬆️"}
+                    {id: "1", name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
+                    {id: "2", name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
+                    {id: "3", name: "ALUMINIUM RONGSOK (Kaleng)", satuan: "Kg", price: 15000, keterangan: ""},
+                    {id: "4", name: "BESI", satuan: "Kg", price: 4300, keterangan: ""},
+                    {id: "5", name: "BODONG A / BOTOL PLASTIK BERSIH", satuan: "Kg", price: 6300, keterangan: "⬆️"},
+                    {id: "37", name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: ""}
                 ];
                 renderAllViews(allData);
             } finally { loading.style.display = 'none'; }
@@ -423,9 +479,14 @@
         function renderAllViews(items) {
             const tbody = document.getElementById('priceTableBody');
             const mobileGrid = document.getElementById('mobileGrid');
+            const searchCount = document.getElementById('searchCount');
             
+            tbody.innerHTML = '';
+            mobileGrid.innerHTML = '';
+
             if(items.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem;">Tidak ada data.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">Tidak ada data ditemukan.</td></tr>`;
+                mobileGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:2rem; color:var(--text-muted);">Tidak ada data ditemukan.</div>`;
                 return;
             }
 
@@ -433,7 +494,6 @@
                 const isUp = item.keterangan && String(item.keterangan).includes('⬆️');
                 const statusBadge = isUp ? `<span style="color:#16a34a; font-size:1.2rem;" title="Harga Naik">⬆️</span>` : `-`;
                 
-                // Render Tabel Desktop
                 tbody.innerHTML += `
                     <tr>
                         <td class="col-no">${idx + 1}</td>
@@ -443,7 +503,6 @@
                         <td class="col-ket">${statusBadge}</td>
                     </tr>`;
 
-                // Render Kartu Mobile
                 mobileGrid.innerHTML += `
                     <div class="price-card">
                         <div class="card-header">
@@ -457,12 +516,59 @@
                         </div>
                     </div>`;
             });
+
+            if (items.length !== allData.length) {
+                searchCount.textContent = `Ditemukan ${items.length} dari ${allData.length} barang`;
+                searchCount.classList.add('show');
+            } else {
+                searchCount.classList.remove('show');
+            }
         }
 
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const keyword = e.target.value.toLowerCase();
-            const filtered = allData.filter(item => String(item.name).toLowerCase().includes(keyword));
+        function handleSearch(e) {
+            const keyword = e.target.value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clearBtn');
+            
+            if (keyword.length > 0) {
+                clearBtn.classList.add('show');
+            } else {
+                clearBtn.classList.remove('show');
+            }
+
+            if (keyword === '') {
+                renderAllViews(allData);
+                return;
+            }
+
+            const filtered = allData.filter(item => {
+                const name = String(item.name || '').toLowerCase();
+                const satuan = String(item.satuan || '').toLowerCase();
+                const id = String(item.id || '').toLowerCase();
+                return name.includes(keyword) || satuan.includes(keyword) || id.includes(keyword);
+            });
+
             renderAllViews(filtered);
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            document.getElementById('clearBtn').classList.remove('show');
+            document.getElementById('searchCount').classList.remove('show');
+            renderAllViews(allData);
+            searchInput.focus();
+        }
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', handleSearch);
+        searchInput.addEventListener('keyup', handleSearch);
+        searchInput.addEventListener('search', handleSearch);
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearch(e);
+            }
         });
 
         function downloadPNG() {
@@ -477,7 +583,8 @@
             }).then(canvas => {
                 try {
                     const link = document.createElement('a');
-                    link.download = `RAJ-PriceList-${new Date().toISOString().slice(0,10)}.png`;
+                    const dateStr = new Date().toISOString().slice(0,10);
+                    link.download = `Daftar-Harga-RAJ-${dateStr}.png`;
                     link.href = canvas.toDataURL('image/png');
                     document.body.appendChild(link);
                     link.click();
@@ -494,7 +601,11 @@
             });
         }
 
-        window.onload = fetchPrices;
+        // Inisialisasi
+        window.onload = function() {
+            setUpdateDate();
+            fetchPrices();
+        };
     </script>
 </body>
 </html>
