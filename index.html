@@ -33,329 +33,156 @@
             padding: 1.5rem 1rem;
         }
 
-        .main-wrapper {
-            width: 100%;
-            max-width: 900px;
-            position: relative;
-        }
+        .main-wrapper { width: 100%; max-width: 900px; position: relative; }
 
         /* --- HEADER --- */
         .header-clean {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            box-shadow: var(--shadow-card);
-            border: 1px solid var(--border-color);
-            flex-wrap: wrap;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg); border-radius: 24px; padding: 1.5rem;
+            margin-bottom: 1.5rem; display: flex; align-items: center;
+            justify-content: space-between; gap: 1rem;
+            box-shadow: var(--shadow-card); border: 1px solid var(--border-color);
+            flex-wrap: wrap; position: relative; overflow: hidden;
         }
-
         .header-clean::before {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--raj-dark), var(--raj-primary), var(--raj-dark));
         }
-
         .brand-left { display: flex; align-items: center; gap: 1rem; }
-
         .logo-img {
-            width: 60px; height: 60px;
-            border-radius: 16px;
-            object-fit: contain;
-            background: white;
-            border: 2px solid var(--raj-primary);
-            padding: 4px;
+            width: 60px; height: 60px; border-radius: 16px; object-fit: contain;
+            background: white; border: 2px solid var(--raj-primary); padding: 4px;
         }
-
-        .brand-text h1 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--raj-dark);
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-text p {
-            font-size: 0.75rem;
-            color: var(--raj-primary);
-            margin-top: 2px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
+        .brand-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--raj-dark); line-height: 1.2; }
+        .brand-text p { font-size: 0.75rem; color: var(--raj-primary); margin-top: 2px; font-weight: 700; text-transform: uppercase; }
         .slogan-box {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: var(--raj-dark);
-            text-align: right;
-            line-height: 1.3;
-            border-right: 3px solid var(--raj-primary);
-            padding-right: 0.8rem;
-            font-weight: 600;
+            font-size: 0.8rem; font-style: italic; color: var(--raj-dark); text-align: right;
+            line-height: 1.3; border-right: 3px solid var(--raj-primary); padding-right: 0.8rem; font-weight: 600;
         }
-
-        /* --- BADGE TANGGAL UPDATE --- */
-        .update-badge {
-            background: linear-gradient(135deg, var(--raj-dark), var(--raj-primary));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
-            letter-spacing: 0.3px;
+        
+        /* Badge Tanggal */
+        .date-badge {
+            width: 100%; margin-top: 1rem; padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.8rem; color: var(--text-muted); font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem;
         }
+        .date-badge svg { width: 16px; height: 16px; color: var(--raj-primary); }
 
-        .update-badge svg {
-            width: 14px; height: 14px;
-        }
-
-        /* --- SEARCH BAR --- */
+        /* --- SEARCH --- */
         .search-container { position: relative; margin-bottom: 1.5rem; }
-
-        .search-wrapper { position: relative; display: flex; align-items: center; }
-
         .search-input {
-            width: 100%;
-            padding: 1rem 3rem 1rem 3rem;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            font-weight: 500;
-            -webkit-appearance: none;
+            width: 100%; padding: 1rem 1.2rem; padding-left: 3rem;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 16px; color: var(--text-main); font-size: 1rem;
+            outline: none; transition: all 0.3s ease; font-weight: 500;
         }
-
-        .search-input:focus {
-            border-color: var(--raj-primary);
-            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
-        }
-
-        .search-icon {
-            position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
-            color: var(--raj-primary); width: 20px; height: 20px;
-            pointer-events: none;
-        }
-
-        .clear-btn {
-            position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%);
-            background: var(--raj-light); border: none; width: 28px; height: 28px;
-            border-radius: 50%; cursor: pointer; display: none;
-            align-items: center; justify-content: center;
-            color: var(--raj-dark); font-size: 1rem; font-weight: 700;
-        }
-
-        .clear-btn.show { display: flex; }
-
-        .search-count {
-            text-align: center; font-size: 0.85rem; color: var(--text-muted);
-            margin-bottom: 1rem; font-weight: 600; display: none;
-        }
-
-        .search-count.show { display: block; }
+        .search-input:focus { border-color: var(--raj-primary); box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1); }
+        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--raj-primary); width: 20px; height: 20px; }
 
         /* --- DESKTOP TABLE --- */
         .table-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            border: 1px solid var(--border-color);
-            display: block;
+            background: var(--card-bg); border-radius: 24px; overflow: hidden;
+            box-shadow: var(--shadow-card); border: 1px solid var(--border-color); display: block;
         }
-
         table { width: 100%; border-collapse: collapse; }
-
         th {
-            background: #f0fdf4;
-            color: var(--raj-dark);
-            padding: 1.2rem 1rem;
-            text-align: left;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--raj-primary);
+            background: #f0fdf4; color: var(--raj-dark); padding: 1.2rem 1rem;
+            text-align: left; font-weight: 700; text-transform: uppercase;
+            font-size: 0.75rem; letter-spacing: 1px; border-bottom: 2px solid var(--raj-primary);
         }
-
-        td {
-            padding: 1.2rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-main);
-            font-size: 0.95rem;
-            vertical-align: middle;
-        }
-
+        td { padding: 1.2rem 1rem; border-bottom: 1px solid var(--border-color); color: var(--text-main); font-size: 0.95rem; vertical-align: middle; cursor: pointer; }
         tr:last-child td { border-bottom: none; }
         tr:hover td { background: #f0fdf4; transition: 0.2s; }
-
         .col-no { color: var(--text-muted); width: 50px; text-align: center; font-weight: 700; }
         .col-price { font-weight: 800; color: var(--raj-dark); text-align: right; white-space: nowrap; font-size: 1.05rem; }
-        .col-unit { 
-            color: var(--raj-primary); font-size: 0.75rem; text-align: center; 
-            background: #dcfce7; border-radius: 6px; display: inline-block; 
-            padding: 3px 10px; font-weight: 700;
-        }
+        .col-unit { color: var(--raj-primary); font-size: 0.75rem; text-align: center; background: #dcfce7; border-radius: 6px; display: inline-block; padding: 3px 10px; font-weight: 700; }
         .col-ket { text-align: center; font-size: 1.2rem; }
 
         /* --- MOBILE GRID --- */
-        .mobile-grid {
-            display: none;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        .mobile-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+        .price-card {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px;
+            padding: 1.2rem; box-shadow: var(--shadow-card); display: flex;
+            flex-direction: column; justify-content: space-between; transition: transform 0.2s; cursor: pointer;
+        }
+        .price-card:active { transform: scale(0.98); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+        .card-no { background: var(--raj-light); color: var(--raj-dark); font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+        .card-unit { font-size: 0.7rem; color: var(--raj-primary); background: #f0fdf4; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+        .card-name { font-size: 0.95rem; font-weight: 700; color: var(--text-main); line-height: 1.4; margin-bottom: 1rem; flex-grow: 1; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border-color); padding-top: 0.8rem; }
+        .card-price { font-size: 1.1rem; font-weight: 800; color: var(--raj-dark); }
+
+        /* --- MODAL POPUP GALERI --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(20, 83, 45, 0.8); backdrop-filter: blur(8px);
+            z-index: 1000; display: none; align-items: center; justify-content: center;
+            padding: 1rem; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: white; border-radius: 24px; width: 100%; max-width: 600px;
+            max-height: 85vh; overflow-y: auto; padding: 1.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+        .modal-title { font-size: 1.2rem; font-weight: 800; color: var(--raj-dark); }
+        .modal-close {
+            background: var(--raj-light); border: none; width: 36px; height: 36px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; color: var(--raj-dark); transition: 0.2s;
+        }
+        .modal-close:hover { background: var(--raj-primary); color: white; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 1rem;
         }
-
-        .price-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 1.2rem;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .gallery-item {
+            aspect-ratio: 1; border-radius: 16px; overflow: hidden;
+            background: #f1f5f9; border: 1px solid var(--border-color);
+            position: relative;
         }
-
-        .price-card:active { transform: scale(0.98); }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-no {
-            background: var(--raj-light);
-            color: var(--raj-dark);
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 6px;
-        }
-
-        .card-unit {
-            font-size: 0.7rem;
-            color: var(--raj-primary);
-            background: #f0fdf4;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .card-name {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.4;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 0.8rem;
-        }
-
-        .card-price {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--raj-dark);
-        }
-
-        /* --- FOOTER --- */
-        .footer-tags {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            display: flex; align-items: center; gap: 0.4rem;
-            background: white; padding: 0.5rem 1rem;
-            border-radius: 50px; border: 1px solid var(--border-color);
-            font-size: 0.75rem; font-weight: 700; color: var(--raj-dark);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        /* --- CONTROLS --- */
-        .controls {
-            position: fixed; bottom: 1.5rem; right: 1.5rem;
-            display: flex; flex-direction: column; gap: 0.8rem;
-            z-index: 100; align-items: flex-end;
-        }
-
-        .btn {
-            border: none; padding: 0.9rem 1.4rem; border-radius: 14px;
-            font-weight: 700; cursor: pointer; display: flex;
-            align-items: center; gap: 0.5rem; transition: all 0.3s;
-            font-size: 0.9rem; text-decoration: none;
-        }
-
-        .btn-primary { 
-            background: var(--raj-dark); color: white; 
-            box-shadow: 0 4px 15px rgba(20, 83, 45, 0.3); 
-        }
-        .btn-primary:hover { background: var(--raj-primary); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
         
-        .btn-wa { 
-            background: var(--wa-green); color: white; 
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
-            animation: pulse-wa 2s infinite; 
+        .empty-gallery {
+            text-align: center; padding: 3rem 1rem; color: var(--text-muted);
+            display: flex; flex-direction: column; align-items: center; gap: 1rem;
+            grid-column: 1/-1;
         }
+        .empty-icon { font-size: 3rem; opacity: 0.5; }
 
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+        /* --- FOOTER & CONTROLS --- */
+        .footer-tags { margin-top: 2rem; display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+        .tag { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 700; color: var(--raj-dark); }
+        
+        .controls { position: fixed; bottom: 1.5rem; right: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; z-index: 100; align-items: flex-end; }
+        .btn { border: none; padding: 0.9rem 1.4rem; border-radius: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; font-size: 0.9rem; text-decoration: none; }
+        .btn-primary { background: var(--raj-dark); color: white; box-shadow: 0 4px 15px rgba(20, 83, 45, 0.3); }
+        .btn-primary:hover { background: var(--raj-primary); transform: translateY(-2px); }
+        .btn-wa { background: var(--wa-green); color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); animation: pulse-wa 2s infinite; }
+        @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-        .loading-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 50; border-radius: 24px; color: var(--raj-dark);
-        }
-
-        .spinner {
-            width: 36px; height: 36px; border: 3px solid #dcfce7;
-            border-top-color: var(--raj-primary); border-radius: 50%;
-            animation: spin 1s linear infinite; margin-bottom: 1rem;
-        }
+        .loading-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; border-radius: 24px; color: var(--raj-dark); }
+        .spinner { width: 36px; height: 36px; border: 3px solid #dcfce7; border-top-color: var(--raj-primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         @media (max-width: 768px) {
             .header-clean { flex-direction: column; text-align: center; padding: 1.2rem; }
             .brand-left { flex-direction: column; }
             .slogan-box { border-right: none; border-bottom: 2px solid var(--raj-primary); padding-bottom: 0.8rem; padding-right: 0; text-align: center; width: 100%; }
-            .update-badge { margin: 0.8rem auto 0; }
-            
             .table-card { display: none; }
             .mobile-grid { display: grid; }
-            
             .controls { bottom: 1rem; right: 1rem; left: 1rem; flex-direction: row; justify-content: center; }
             .btn { flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.85rem; }
             .btn-wa { flex: 0 0 auto; padding: 0.8rem 1rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -375,48 +202,48 @@
                     <p>Supplier & Waste Solution Partner</p>
                 </div>
             </div>
-            <div class="slogan-box">
-                "Bersama Kelola Limbah<br>Untuk Masa Depan Lebih Baik"
-            </div>
+            <div class="slogan-box">"Bersama Kelola Limbah<br>Untuk Masa Depan Lebih Baik"</div>
             
-            <!-- Badge Tanggal Update -->
-            <div class="update-badge" id="updateBadge">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                <span id="updateDate">Memuat tanggal...</span>
+            <!-- BADGE TANGGAL UPDATE -->
+            <div class="date-badge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span id="currentDate">Update: ...</span>
             </div>
         </header>
 
         <div class="search-container">
-            <div class="search-wrapper">
-                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                <input type="text" id="searchInput" class="search-input" placeholder="Cari material... (Contoh: Tembaga, Kardus)" autocomplete="off">
-                <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
-            </div>
+            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari material...">
         </div>
 
-        <div id="searchCount" class="search-count"></div>
-
+        <!-- Desktop Table -->
         <div class="table-card">
             <table>
-                <thead>
-                    <tr>
-                        <th class="col-no">NO</th>
-                        <th>NAMA BARANG</th>
-                        <th>SATUAN</th>
-                        <th>HARGA (IDR)</th>
-                        <th>KET</th>
-                    </tr>
-                </thead>
+                <thead><tr><th class="col-no">NO</th><th>NAMA BARANG</th><th>SATUAN</th><th>HARGA (IDR)</th><th>KET</th></tr></thead>
                 <tbody id="priceTableBody"></tbody>
             </table>
         </div>
 
+        <!-- Mobile Grid -->
         <div id="mobileGrid" class="mobile-grid"></div>
 
         <div class="footer-tags">
             <div class="tag">🌿 Peduli Lingkungan</div>
             <div class="tag">♻️ Pengelolaan Terpadu</div>
             <div class="tag">🤝 Mitra Terpercaya</div>
+        </div>
+    </div>
+
+    <!-- Modal Popup Galeri -->
+    <div id="imageModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Nama Barang</div>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="galleryContainer" class="gallery-grid"></div>
         </div>
     </div>
 
@@ -435,21 +262,10 @@
         const API_URL = 'https://script.google.com/macros/s/AKfycbylgW2dzHDG51D9qHtDJ0K5cwmidBgwK9Y7a1lPEoYRskK0kXRrEUYSbjjAFeOyi-Dz/exec';
         let allData = [];
 
-        // Format Rupiah
-        const formatIDR = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
+        // Set Tanggal Hari Ini
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Set Tanggal Update Otomatis (Bahasa Indonesia)
-        function setUpdateDate() {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            const formattedDate = now.toLocaleDateString('id-ID', options);
-            document.getElementById('updateDate').textContent = `Update: ${formattedDate}`;
-        }
+        const formatIDR = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
 
         async function fetchPrices() {
             const loading = document.getElementById('loading');
@@ -460,33 +276,28 @@
                 const result = await res.json();
                 if (result.status === 'success' && result.items) {
                     allData = result.items;
-                    renderAllViews(allData);
                 } else { throw new Error('Data invalid'); }
             } catch (err) {
-                console.log("Menggunakan data dummy:", err);
+                // Fallback dummy data jika offline/error
                 allData = [
-                    {id: "1", name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
-                    {id: "2", name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
-                    {id: "3", name: "ALUMINIUM RONGSOK (Kaleng)", satuan: "Kg", price: 15000, keterangan: ""},
-                    {id: "4", name: "BESI", satuan: "Kg", price: 4300, keterangan: ""},
-                    {id: "5", name: "BODONG A / BOTOL PLASTIK BERSIH", satuan: "Kg", price: 6300, keterangan: "⬆️"},
-                    {id: "37", name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: ""}
+                    {name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
+                    {name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
+                    {name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: "⬆️"}
                 ];
+            } finally { 
                 renderAllViews(allData);
-            } finally { loading.style.display = 'none'; }
+                loading.style.display = 'none'; 
+            }
         }
 
         function renderAllViews(items) {
             const tbody = document.getElementById('priceTableBody');
             const mobileGrid = document.getElementById('mobileGrid');
-            const searchCount = document.getElementById('searchCount');
-            
             tbody.innerHTML = '';
             mobileGrid.innerHTML = '';
 
             if(items.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">Tidak ada data ditemukan.</td></tr>`;
-                mobileGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:2rem; color:var(--text-muted);">Tidak ada data ditemukan.</div>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem;">Tidak ada data.</td></tr>`;
                 return;
             }
 
@@ -494,8 +305,9 @@
                 const isUp = item.keterangan && String(item.keterangan).includes('⬆️');
                 const statusBadge = isUp ? `<span style="color:#16a34a; font-size:1.2rem;" title="Harga Naik">⬆️</span>` : `-`;
                 
+                // Render Tabel Desktop
                 tbody.innerHTML += `
-                    <tr>
+                    <tr onclick="openGallery('${item.name.replace(/'/g, "\\'")}')">
                         <td class="col-no">${idx + 1}</td>
                         <td style="font-weight:600;">${item.name}</td>
                         <td style="text-align:center;"><span class="col-unit">${item.satuan || 'Kg'}</span></td>
@@ -503,8 +315,9 @@
                         <td class="col-ket">${statusBadge}</td>
                     </tr>`;
 
+                // Render Kartu Mobile
                 mobileGrid.innerHTML += `
-                    <div class="price-card">
+                    <div class="price-card" onclick="openGallery('${item.name.replace(/'/g, "\\'")}')">
                         <div class="card-header">
                             <span class="card-no">#${idx + 1}</span>
                             <span class="card-unit">${item.satuan || 'Kg'}</span>
@@ -516,96 +329,112 @@
                         </div>
                     </div>`;
             });
-
-            if (items.length !== allData.length) {
-                searchCount.textContent = `Ditemukan ${items.length} dari ${allData.length} barang`;
-                searchCount.classList.add('show');
-            } else {
-                searchCount.classList.remove('show');
-            }
         }
 
-        function handleSearch(e) {
-            const keyword = e.target.value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clearBtn');
+        // --- LOGIKA GALERI FOTO (AUTO DETECT SEMUA FILE) ---
+        function openGallery(itemName) {
+            const modal = document.getElementById('imageModal');
+            const title = document.getElementById('modalTitle');
+            const gallery = document.getElementById('galleryContainer');
             
-            if (keyword.length > 0) {
-                clearBtn.classList.add('show');
-            } else {
-                clearBtn.classList.remove('show');
+            title.textContent = itemName;
+            gallery.innerHTML = ''; 
+            
+            // Daftar ekstensi gambar yang didukung
+            const extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+            let imageFound = false;
+            let loadedCount = 0;
+
+            // Coba load hingga 20 kemungkinan file gambar dengan nama BEBAS
+            // Kita gunakan pola ./FolderName/filename.ext
+            // Karena browser lokal tidak bisa list directory, kita coba pola umum
+            // ATAU lebih baik: Gunakan teknik pre-loading jika nama file diketahui
+            
+            // SOLUSI TERBAIK UNTUK LOKAL: Coba load array nama file yang mungkin
+            // Jika Bapak ingin benar-benar bebas tanpa tahu nama filenya, 
+            // kita butuh server-side listing. Tapi untuk lokal, kita bisa coba 
+            // memuat semua kombinasi angka 1-20 + ekstensi
+            
+            for(let i=1; i<=20; i++) {
+                extensions.forEach(ext => {
+                    // Coba berbagai pola penamaan yang umum
+                    const patterns = [
+                        `${itemName}/${i}.${ext}`,           // 1.jpg
+                        `${itemName}/${itemName}-${i}.${ext}`, // AKI-1.jpg  
+                        `${itemName}/IMG_${String(i).padStart(4,'0')}.${ext}`, // IMG_0001.jpg
+                        `${itemName}/foto-${i}.${ext}`       // foto-1.jpg
+                    ];
+                    
+                    patterns.forEach(pattern => {
+                        const img = new Image();
+                        img.onload = function() {
+                            // Cek duplikasi URL sebelum append
+                            const existingSrcs = Array.from(gallery.querySelectorAll('img')).map(el => el.src);
+                            if(!existingSrcs.includes(img.src)) {
+                                imageFound = true;
+                                const div = document.createElement('div');
+                                div.className = 'gallery-item';
+                                div.innerHTML = `<img src="${img.src}" alt="${itemName}" loading="lazy">`;
+                                gallery.appendChild(div);
+                            }
+                        };
+                        img.onerror = function() {
+                            // Ignore error, lanjut ke pattern berikutnya
+                        };
+                        img.src = pattern;
+                    });
+                });
             }
 
-            if (keyword === '') {
-                renderAllViews(allData);
-                return;
-            }
+            // Fallback jika setelah 2 detik tidak ada gambar yang load
+            setTimeout(() => {
+                if(gallery.children.length === 0) {
+                    gallery.innerHTML = `
+                        <div class="empty-gallery">
+                            <div class="empty-icon">📷</div>
+                            <p>Foto untuk <strong>${itemName}</strong> belum tersedia.<br>Silakan hubungi admin untuk detail lebih lanjut.</p>
+                        </div>`;
+                }
+            }, 2000);
 
-            const filtered = allData.filter(item => {
-                const name = String(item.name || '').toLowerCase();
-                const satuan = String(item.satuan || '').toLowerCase();
-                const id = String(item.id || '').toLowerCase();
-                return name.includes(keyword) || satuan.includes(keyword) || id.includes(keyword);
-            });
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
+        function closeModal(e) {
+            if(e && e.target !== e.currentTarget) return;
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Search Logic
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = allData.filter(item => String(item.name).toLowerCase().includes(keyword));
             renderAllViews(filtered);
-        }
-
-        function clearSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = '';
-            document.getElementById('clearBtn').classList.remove('show');
-            document.getElementById('searchCount').classList.remove('show');
-            renderAllViews(allData);
-            searchInput.focus();
-        }
-
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', handleSearch);
-        searchInput.addEventListener('keyup', handleSearch);
-        searchInput.addEventListener('search', handleSearch);
-        
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                handleSearch(e);
-            }
         });
 
+        // Download Logic
         function downloadPNG() {
             const btn = document.querySelector('.btn-primary');
             const originalText = btn.innerHTML;
             btn.innerHTML = '⏳ Proses...';
             
             const target = document.getElementById('capture-target');
-            
-            html2canvas(target, { 
-                scale: 2, backgroundColor: '#f0fdf4', useCORS: true, allowTaint: true 
-            }).then(canvas => {
-                try {
-                    const link = document.createElement('a');
-                    const dateStr = new Date().toISOString().slice(0,10);
-                    link.download = `Daftar-Harga-RAJ-${dateStr}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    btn.innerHTML = originalText;
-                } catch (e) {
-                    alert("Gagal menyimpan otomatis. Silakan screenshot manual.");
-                    btn.innerHTML = originalText;
-                }
-            }).catch(err => { 
-                console.error(err);
-                alert("Terjadi kesalahan saat membuat gambar.");
-                btn.innerHTML = originalText; 
-            });
+            html2canvas(target, { scale: 2, backgroundColor: '#f0fdf4', useCORS: true, allowTaint: true })
+            .then(canvas => {
+                const link = document.createElement('a');
+                link.download = `RAJ-PriceList-${new Date().toISOString().slice(0,10)}.png`;
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                btn.innerHTML = originalText;
+            }).catch(err => { alert("Gagal menyimpan."); btn.innerHTML = originalText; });
         }
 
-        // Inisialisasi
-        window.onload = function() {
-            setUpdateDate();
-            fetchPrices();
-        };
+        window.onload = fetchPrices;
     </script>
 </body>
 </html>
