@@ -267,6 +267,15 @@
 
         const formatIDR = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
 
+        // FUNGSI PENTING: Membersihkan nama barang agar aman jadi nama folder
+        function sanitizeFolderName(name) {
+            return String(name)
+                .replace(/\//g, '-')       // Ganti / dengan -
+                .replace(/\\/g, '-')       // Ganti \ dengan -
+                .replace(/[<>:"|?*]/g, '') // Hapus karakter ilegal Windows lainnya
+                .trim();
+        }
+
         async function fetchPrices() {
             const loading = document.getElementById('loading');
             loading.style.display = 'flex';
@@ -282,7 +291,7 @@
                 allData = [
                     {name: "AKI", satuan: "Pcs", price: 9000, keterangan: ""},
                     {name: "ALUMINIUM PANCI", satuan: "Kg", price: 17000, keterangan: ""},
-                    {name: "TEMBAGA MURNI", satuan: "Kg", price: 105000, keterangan: "⬆️"}
+                    {name: "BODONG A / BOTOL PLASTIK BERSIH", satuan: "Kg", price: 6300, keterangan: "⬆️"}
                 ];
             } finally { 
                 renderAllViews(allData);
@@ -331,7 +340,7 @@
             });
         }
 
-        // --- LOGIKA GALERI FOTO (AUTO DETECT SEMUA FILE) ---
+        // --- LOGIKA GALERI FOTO DENGAN SANITISASI NAMA FOLDER ---
         function openGallery(itemName) {
             const modal = document.getElementById('imageModal');
             const title = document.getElementById('modalTitle');
@@ -340,35 +349,25 @@
             title.textContent = itemName;
             gallery.innerHTML = ''; 
             
-            // Daftar ekstensi gambar yang didukung
+            // Gunakan fungsi sanitasi untuk mendapatkan nama folder yang valid
+            const safeFolderName = sanitizeFolderName(itemName);
+            
             const extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
             let imageFound = false;
-            let loadedCount = 0;
 
-            // Coba load hingga 20 kemungkinan file gambar dengan nama BEBAS
-            // Kita gunakan pola ./FolderName/filename.ext
-            // Karena browser lokal tidak bisa list directory, kita coba pola umum
-            // ATAU lebih baik: Gunakan teknik pre-loading jika nama file diketahui
-            
-            // SOLUSI TERBAIK UNTUK LOKAL: Coba load array nama file yang mungkin
-            // Jika Bapak ingin benar-benar bebas tanpa tahu nama filenya, 
-            // kita butuh server-side listing. Tapi untuk lokal, kita bisa coba 
-            // memuat semua kombinasi angka 1-20 + ekstensi
-            
+            // Coba load berbagai pola penamaan file dalam folder yang sudah disanitasi
             for(let i=1; i<=20; i++) {
                 extensions.forEach(ext => {
-                    // Coba berbagai pola penamaan yang umum
                     const patterns = [
-                        `${itemName}/${i}.${ext}`,           // 1.jpg
-                        `${itemName}/${itemName}-${i}.${ext}`, // AKI-1.jpg  
-                        `${itemName}/IMG_${String(i).padStart(4,'0')}.${ext}`, // IMG_0001.jpg
-                        `${itemName}/foto-${i}.${ext}`       // foto-1.jpg
+                        `${safeFolderName}/${i}.${ext}`,
+                        `${safeFolderName}/${itemName}-${i}.${ext}`, // Tetap gunakan nama asli untuk nama file
+                        `${safeFolderName}/IMG_${String(i).padStart(4,'0')}.${ext}`,
+                        `${safeFolderName}/foto-${i}.${ext}`
                     ];
                     
                     patterns.forEach(pattern => {
                         const img = new Image();
                         img.onload = function() {
-                            // Cek duplikasi URL sebelum append
                             const existingSrcs = Array.from(gallery.querySelectorAll('img')).map(el => el.src);
                             if(!existingSrcs.includes(img.src)) {
                                 imageFound = true;
@@ -378,21 +377,20 @@
                                 gallery.appendChild(div);
                             }
                         };
-                        img.onerror = function() {
-                            // Ignore error, lanjut ke pattern berikutnya
-                        };
+                        img.onerror = function() {}; // Ignore error silently
                         img.src = pattern;
                     });
                 });
             }
 
-            // Fallback jika setelah 2 detik tidak ada gambar yang load
+            // Fallback jika tidak ada gambar ditemukan
             setTimeout(() => {
                 if(gallery.children.length === 0) {
                     gallery.innerHTML = `
                         <div class="empty-gallery">
                             <div class="empty-icon">📷</div>
-                            <p>Foto untuk <strong>${itemName}</strong> belum tersedia.<br>Silakan hubungi admin untuk detail lebih lanjut.</p>
+                            <p>Foto untuk <strong>${itemName}</strong> belum tersedia.<br>
+                            <small>Pastikan folder bernama: "${safeFolderName}"</small></p>
                         </div>`;
                 }
             }, 2000);
