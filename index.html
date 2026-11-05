@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
+    <!-- Meta Tag Anti-Cache untuk HP -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <style>
         :root {
             --bg-body: #f0fdf4;
@@ -47,11 +52,15 @@
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--raj-dark), var(--raj-primary), var(--raj-dark));
         }
-        .brand-left { display: flex; align-items: center; gap: 1rem; }
+        .brand-left { display: flex; align-items: center; gap: 1.2rem; }
+        
+        /* LOGO BESAR TANPA KOTAK */
         .logo-img {
-            width: 60px; height: 60px; border-radius: 16px; object-fit: contain;
-            background: white; border: 2px solid var(--raj-primary); padding: 4px;
+            width: 90px; height: 90px; 
+            object-fit: contain;
+            /* Tidak ada border, background, atau padding */
         }
+
         .brand-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--raj-dark); line-height: 1.2; }
         .brand-text p { font-size: 0.75rem; color: var(--raj-primary); margin-top: 2px; font-weight: 700; text-transform: uppercase; }
         .slogan-box {
@@ -183,6 +192,7 @@
             .btn { flex: 1; justify-content: center; padding: 0.8rem; font-size: 0.85rem; }
             .btn-wa { flex: 0 0 auto; padding: 0.8rem 1rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .logo-img { width: 80px; height: 80px; } /* Sedikit lebih kecil di HP agar proporsional */
         }
     </style>
 </head>
@@ -196,6 +206,7 @@
 
         <header class="header-clean">
             <div class="brand-left">
+                <!-- LOGO TANPA KOTAK & LEBIH BESAR -->
                 <img src="logo.png" alt="RAJ Logo" class="logo-img" onerror="this.style.display='none'">
                 <div class="brand-text">
                     <h1>REZEKI AMANAH<br>JAYA GROUP</h1>
@@ -267,13 +278,16 @@
 
         const formatIDR = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
 
-        // FUNGSI PENTING: Membersihkan nama barang agar aman jadi nama folder
-        function sanitizeFolderName(name) {
+        // FUNGSI SANITISASI KHUSUS GITHUB PAGES (SPASI JADI -)
+        function getSafeFolderName(name) {
             return String(name)
-                .replace(/\//g, '-')       // Ganti / dengan -
-                .replace(/\\/g, '-')       // Ganti \ dengan -
-                .replace(/[<>:"|?*]/g, '') // Hapus karakter ilegal Windows lainnya
-                .trim();
+                .toUpperCase()              // 1. Wajib Kapital
+                .replace(/[\/\\]/g, '-')    // 2. Ganti slash jadi -
+                .replace(/[()]/g, '')       // 3. Hapus tanda kurung (Kaleng) -> Kaleng
+                .replace(/\s+/g, '-')       // 4. Ganti SEMUA spasi jadi -
+                .replace(/[^A-Z0-9\-]/g, '')// 5. Hapus karakter aneh lainnya
+                .replace(/-+/g, '-')        // 6. Rapikan jika ada dash dobel --
+                .replace(/^-|-$/g, '');     // 7. Hapus dash di awal/akhir
         }
 
         async function fetchPrices() {
@@ -314,9 +328,11 @@
                 const isUp = item.keterangan && String(item.keterangan).includes('⬆️');
                 const statusBadge = isUp ? `<span style="color:#16a34a; font-size:1.2rem;" title="Harga Naik">⬆️</span>` : `-`;
                 
-                // Render Tabel Desktop
+                // Escape single quote agar onclick tidak error
+                const safeName = item.name.replace(/'/g, "\\'");
+
                 tbody.innerHTML += `
-                    <tr onclick="openGallery('${item.name.replace(/'/g, "\\'")}')">
+                    <tr onclick="openGallery('${safeName}')">
                         <td class="col-no">${idx + 1}</td>
                         <td style="font-weight:600;">${item.name}</td>
                         <td style="text-align:center;"><span class="col-unit">${item.satuan || 'Kg'}</span></td>
@@ -324,9 +340,8 @@
                         <td class="col-ket">${statusBadge}</td>
                     </tr>`;
 
-                // Render Kartu Mobile
                 mobileGrid.innerHTML += `
-                    <div class="price-card" onclick="openGallery('${item.name.replace(/'/g, "\\'")}')">
+                    <div class="price-card" onclick="openGallery('${safeName}')">
                         <div class="card-header">
                             <span class="card-no">#${idx + 1}</span>
                             <span class="card-unit">${item.satuan || 'Kg'}</span>
@@ -340,7 +355,7 @@
             });
         }
 
-        // --- LOGIKA GALERI FOTO DENGAN SANITISASI NAMA FOLDER ---
+        // --- LOGIKA GALERI DENGAN DEBUG MODE ---
         function openGallery(itemName) {
             const modal = document.getElementById('imageModal');
             const title = document.getElementById('modalTitle');
@@ -349,51 +364,53 @@
             title.textContent = itemName;
             gallery.innerHTML = ''; 
             
-            // Gunakan fungsi sanitasi untuk mendapatkan nama folder yang valid
-            const safeFolderName = sanitizeFolderName(itemName);
+            // Dapatkan nama folder yang AMAN untuk GitHub
+            const safeFolder = getSafeFolderName(itemName);
             
-            const extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+            console.log(`Mencari foto untuk: ${itemName} -> Folder: ${safeFolder}`); // Debug log
+            
+            const extensions = ['jpg', 'jpeg', 'png', 'webp'];
             let imageFound = false;
+            let totalAttempts = 0;
 
-            // Coba load berbagai pola penamaan file dalam folder yang sudah disanitasi
-            for(let i=1; i<=20; i++) {
+            // Coba load 1-10 dengan pola standar
+            for(let i=1; i<=10; i++) {
                 extensions.forEach(ext => {
-                    const patterns = [
-                        `${safeFolderName}/${i}.${ext}`,
-                        `${safeFolderName}/${itemName}-${i}.${ext}`, // Tetap gunakan nama asli untuk nama file
-                        `${safeFolderName}/IMG_${String(i).padStart(4,'0')}.${ext}`,
-                        `${safeFolderName}/foto-${i}.${ext}`
-                    ];
+                    // Pola 1: Angka saja (1.jpg)
+                    const url1 = `${safeFolder}/${i}.${ext}`;
                     
-                    patterns.forEach(pattern => {
-                        const img = new Image();
-                        img.onload = function() {
-                            const existingSrcs = Array.from(gallery.querySelectorAll('img')).map(el => el.src);
-                            if(!existingSrcs.includes(img.src)) {
-                                imageFound = true;
-                                const div = document.createElement('div');
-                                div.className = 'gallery-item';
-                                div.innerHTML = `<img src="${img.src}" alt="${itemName}" loading="lazy">`;
-                                gallery.appendChild(div);
-                            }
-                        };
-                        img.onerror = function() {}; // Ignore error silently
-                        img.src = pattern;
-                    });
+                    const img = new Image();
+                    img.onload = function() {
+                        imageFound = true;
+                        const div = document.createElement('div');
+                        div.className = 'gallery-item';
+                        div.innerHTML = `<img src="${img.src}" alt="${itemName}" loading="lazy">`;
+                        gallery.appendChild(div);
+                    };
+                    img.onerror = function() {
+                        totalAttempts++;
+                    };
+                    img.src = url1;
                 });
             }
 
-            // Fallback jika tidak ada gambar ditemukan
+            // Fallback UI jika gagal
             setTimeout(() => {
                 if(gallery.children.length === 0) {
                     gallery.innerHTML = `
                         <div class="empty-gallery">
                             <div class="empty-icon">📷</div>
-                            <p>Foto untuk <strong>${itemName}</strong> belum tersedia.<br>
-                            <small>Pastikan folder bernama: "${safeFolderName}"</small></p>
+                            <p>Foto belum muncul di HP?</p>
+                            <small style="margin-top:0.5rem; display:block; line-height:1.4;">
+                                Pastikan folder di GitHub bernama:<br>
+                                <strong style="color:var(--raj-primary); font-family:monospace; background:#f1f5f9; padding:2px 5px; border-radius:4px;">${safeFolder}</strong>
+                            </small>
+                            <button onclick="location.reload()" style="margin-top:1rem; padding:8px 16px; background:var(--raj-primary); color:white; border:none; border-radius:8px; cursor:pointer;">
+                                🔄 Refresh Halaman
+                            </button>
                         </div>`;
                 }
-            }, 2000);
+            }, 3000);
 
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -406,14 +423,12 @@
             document.body.style.overflow = '';
         }
 
-        // Search Logic
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const keyword = e.target.value.toLowerCase();
             const filtered = allData.filter(item => String(item.name).toLowerCase().includes(keyword));
             renderAllViews(filtered);
         });
 
-        // Download Logic
         function downloadPNG() {
             const btn = document.querySelector('.btn-primary');
             const originalText = btn.innerHTML;
